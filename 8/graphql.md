@@ -47,15 +47,18 @@ Nest 提供了两种构建 GraphQL 应用程序的方式，**模式优先**和**
 ```typescript
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({}),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+    }),
   ],
 })
-export class ApplicationModule {}
+export class AppModule {}
 ```
-
+> 在集成 mercurius 中, 你应该使用 MercuriusDriver 和 MercuriusDriverConfig 代替. 两个都是从 @nestjs/mercurius导出.
 
 该  `.forRoot()` 函数将选项对象作为参数。这些选项将传递给底层的 Apollo 实例（请在[此处](https://www.apollographql.com/docs/apollo-server/v2/api/apollo-server.html#constructor-options-lt-ApolloServer-gt)阅读有关可用设置的更多信息）。例如，如果要禁用`playground`并关闭`debug`模式，只需传递以下选项：
 
