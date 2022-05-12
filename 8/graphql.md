@@ -195,6 +195,58 @@ definitionsFactory.generate({
 
 在代码优先方式中，您将只使用装饰器和 TypeScript 类来生成相应的 GraphQL schema。
 
+```js
+import {
+  graphql,
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLString,
+} from 'graphql';
+
+var schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: 'RootQueryType',
+    fields: {
+      hello: {
+        type: GraphQLString,
+        resolve() {
+          return 'world';
+        },
+      },
+    },
+  }),
+});
+
+var source = '{ hello }';
+
+graphql({ schema, source }).then((result) => {
+  // Prints
+  // {
+  //   data: { hello: "world" }
+  // }
+  console.log(result);
+});
+
+```
+
+简写模式
+
+```js
+var { graphql, buildSchema } = require('graphql');
+ 
+var schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+ 
+var root = { hello: () => 'Hello world!' };
+ 
+graphql(schema, '{ hello }', root).then((response) => {
+  console.log(response);
+});
+```
+
 使用代码优先方式，首先要在配置对象里添加 `autoSchemaFile` 这个属性：
 
 ```typescript
