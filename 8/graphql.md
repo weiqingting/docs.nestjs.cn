@@ -27,7 +27,7 @@ $ npm i @nestjs/graphql @nestjs/apollo graphql apollo-server-express
 > `@nestjs/graphql@>=9` 和 `@nestjs/apollo^10` 用于 Apollo v3，而 `@nestjs/graphql@^8` 仅支持  Apollo v2
 > Apollo GraphQL 是基于 GraphQL 的全栈解决方案集合。从后端到前端提供了对应的 lib 使得开发使用 GraphQL 更加的方便
 
-?> 如果你使用 Fastify，则安装 `apollo-server-fastify`，替代安装 `apollo-server-express`。
+> 如果你使用 Fastify，则安装 `apollo-server-fastify`，替代安装 `apollo-server-express`。
 
 ### 概述
 
