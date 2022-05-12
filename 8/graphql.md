@@ -65,16 +65,18 @@ export class AppModule {}
 ```typescript
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
       debug: false,
       playground: false,
     }),
   ],
 })
-export class ApplicationModule {}
+export class AppModule {}
 ```
 
 如上所述，所有这些设置都将传递给`ApolloServer`构造函数。
